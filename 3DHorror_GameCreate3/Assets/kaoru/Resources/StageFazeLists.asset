@@ -9,7 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad37755c78d23f4fbcb4ca908ab40b4, type: 3}
-  m_Name: EnemyParameter
+  m_Script: {fileID: 11500000, guid: fc985da5b0d989a488de7a7e6b650361, type: 3}
+  m_Name: StageFazeLists
   m_EditorClassIdentifier: 
-  EnemyStatusL: []
+  Stages:
+  - Enemys:
+    - Tags: 0
+    - Tags: 0
+    - Tags: 0
+  - Enemys:
+    - Tags: 0
+    - Tags: 0
+    - Tags: 0
+  - Enemys:
+    - Tags: 0
+    - Tags: 0
+    - Tags: 0

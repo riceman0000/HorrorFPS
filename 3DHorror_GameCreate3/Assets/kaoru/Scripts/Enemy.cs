@@ -56,10 +56,6 @@ namespace VRShooting
                 transform.position += transform.forward * speed * 0.001f;
             }
         }
-        void S()
-        {
-            //処理
-        }
         void HP(int hp)
         {
             currentHP += hp;

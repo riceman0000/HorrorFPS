@@ -6,7 +6,6 @@ namespace VRShooting
     public class ESManagement : MonoBehaviour
     {
         public const string PATH = "EnemyParameter";
-        //[SerializeField] EnemyStatusList statusList;
         private static EnemyStatusList _entity;
         public static EnemyStatusList Entity
         {
