@@ -392,7 +392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873970112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.666103, y: -2.1146343, z: 23.102873}
+  m_LocalPosition: {x: -26.666103, y: 0, z: 23.102873}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1113600500}
@@ -411,9 +411,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5b4c383d5037343a4e83af7e1106c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy_Zombie1: {fileID: 6428758192004044993, guid: 3de180cd13a456d4c8887e049e6b2e4c,
-    type: 3}
-  Enemy_Zombie2: {fileID: 2121657339}
   spawnPoints: {fileID: 1113600499}
 --- !u!1 &931416445
 GameObject:
@@ -552,7 +549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113600499}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.64141655, y: 4.765562, z: -7.785721}
+  m_LocalPosition: {x: -0.64141655, y: 1, z: -7.785721}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1344257771}
@@ -578,7 +575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1149090140
 Transform:
   m_ObjectHideFlags: 0

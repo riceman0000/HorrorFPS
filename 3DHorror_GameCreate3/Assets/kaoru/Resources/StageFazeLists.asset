@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc985da5b0d989a488de7a7e6b650361, type: 3}
   m_Name: StageFazeLists
   m_EditorClassIdentifier: 
+  Prefabs:
+  - EnemyPrefab: {fileID: 6428758192004044993, guid: 3de180cd13a456d4c8887e049e6b2e4c,
+      type: 3}
+  - EnemyPrefab: {fileID: 6428758192004044993, guid: 3de180cd13a456d4c8887e049e6b2e4c,
+      type: 3}
   Stages:
   - Enemys:
+    - Tags: 0
     - Tags: 0
     - Tags: 0
     - Tags: 0

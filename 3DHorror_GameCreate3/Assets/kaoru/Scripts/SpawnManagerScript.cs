@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 namespace VRShooting
 {
     public class SpawnManagerScript : MonoBehaviour
     {
         public const string PATH = "StageFazeLists";
         private static StageFazeList _stageEntity;
-        [SerializeField] GameObject Enemy_Zombie1;
-        [SerializeField] GameObject Enemy_Zombie2;
         [SerializeField] GameObject spawnPoints;
         private List<GameObject> enemy_obj = new List<GameObject>();
         int childCount = 0;
+        List<Transform> spawnPosTrans = new List<Transform>();
+
         public static StageFazeList StageEntity
         {
             get
@@ -36,14 +36,16 @@ namespace VRShooting
         }
         private void Start()
         {
-            enemy_obj.Add(Enemy_Zombie1);
-            enemy_obj.Add(Enemy_Zombie2);
-
+            GameObject[] childSpawnPointsObj = GetComponentsInChildren<Transform>().
+                Select(t => t.gameObject).ToArray();
+            foreach (var item in childSpawnPointsObj)
+            {
+                spawnPosTrans.Add(item.transform);
+            }
+            spawnPosTrans.RemoveRange(0,2);
             childCount = spawnPoints.transform.childCount;
-            SpawnEnemyOpportunity(1);
+            SpawnEnemyOpportunity(1);//テスト用にfaze番号1を引数に入れている
             Debug.Log(childCount);
-            Debug.Log(enemy_obj[0]);
-            Debug.Log(enemy_obj[1]);
         }
         //そのFazeのEnemys.sizega0になった時に、SpawnEnemyOpportunity()を呼び出すクラス。
 
@@ -55,15 +57,32 @@ namespace VRShooting
         public void SpawnEnemyOpportunity(int fazeNum)
         {
             var a = StageEntity.Stages[fazeNum - 1];
-            List<GameObject> g = Dio(a);
-            foreach (var item in g)
+                Shuffle(spawnPosTrans);
+            int g = 0;
+            foreach (var item in a.Enemys)
             {
-                Random.Range(0,childCount);
-                Instantiate(item, transform.position, transform.rotation);
+                
+                int s = (int)item.Tags;
+                var spawn = this.transform.GetChild(0).transform.GetChild(g).gameObject.transform;
+                //Random.Range(0,childCount)の値を使ってSpawnpointを指定する。
+                Instantiate(StageEntity.Prefabs[s].EnemyPrefab,
+                    spawn.position, spawn.rotation);
+                g++;
             }
-            
+
+
             //transformはspawnpointをランダムに選択
 
+        }
+        public void Shuffle<T>(IList<T> list)
+        {
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                var tmp = list[i];
+                list[i] = list[j];
+                list[j] = tmp;
+            }
         }
         private List<GameObject> Dio(StageFazeElement n)
         {
