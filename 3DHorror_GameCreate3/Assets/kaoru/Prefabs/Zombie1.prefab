@@ -1983,6 +1983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdbddedbe3bfdd4284b0a59a9929f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _SpawnManagerObj: {fileID: 8528257924709880428, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
+    type: 3}
   speed: 5
   distValue: 1.7
   playerHP: {fileID: 690623918, guid: e8db321724d015443a10da411e59d4c5, type: 3}

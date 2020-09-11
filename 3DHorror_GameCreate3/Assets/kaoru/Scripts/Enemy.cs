@@ -7,6 +7,7 @@ namespace VRShooting
 {
     public class Enemy : MonoBehaviour
     {
+        SpawnManagerScript _SpawnManagerScript;
         Transform target;
         [SerializeField]
         float speed = 0;
@@ -20,17 +21,18 @@ namespace VRShooting
         int currentHP;
         int attackPoint;
         Subject<int> attackSubject = new Subject<int>();
-
         void Start()
         {
+            _SpawnManagerScript = GameObject.Find("SpawnManager").GetComponent<SpawnManagerScript>();
             target = GameObject.Find("Player").transform;
             anim = this.GetComponent<Animator>();
             EnemyStatusList esl = ESManagement.Entity;
             Zombie1 = esl.EnemyStatusL[(int)EnemyTags.Tags.Enemy_Zombie1];
             currentHP = Zombie1.HP;
             attackPoint = Zombie1.Attack;
-            Debug.Log(this.gameObject.name + ",currentHP=" + currentHP);
-            Debug.Log(this.gameObject.name + ",AttackPoint=" + attackPoint);
+            //Debug.Log(this.gameObject.name + ",currentHP=" + currentHP);
+            //Debug.Log(this.gameObject.name + ",AttackPoint=" + attackPoint);
+
             attackSubject.ThrottleFirst(TimeSpan.FromSeconds(0.5f)).Subscribe((c) =>
             {
                 playerHP.A(Zombie1.Attack);
@@ -61,10 +63,11 @@ namespace VRShooting
             currentHP += hp;
             if (currentHP <= 0)
             {
+                _SpawnManagerScript.GetComponent<SpawnManagerScript>().EnemyDeathCount();
                 Destroy(this.gameObject);
                 Debug.Log("Destroy" + this.gameObject.name);
             }
-            Debug.Log(this.gameObject.name + ",currentHP=" + currentHP);
+            //Debug.Log(this.gameObject.name + ",currentHP=" + currentHP);
         }
         public void HitDamage(int damage)
         {
