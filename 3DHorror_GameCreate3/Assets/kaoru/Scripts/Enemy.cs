@@ -30,8 +30,6 @@ namespace VRShooting
             Zombie1 = esl.EnemyStatusL[(int)EnemyTags.Tags.Enemy_Zombie1];
             currentHP = Zombie1.HP;
             attackPoint = Zombie1.Attack;
-            //Debug.Log(this.gameObject.name + ",currentHP=" + currentHP);
-            //Debug.Log(this.gameObject.name + ",AttackPoint=" + attackPoint);
 
             attackSubject.ThrottleFirst(TimeSpan.FromSeconds(0.5f)).Subscribe((c) =>
             {

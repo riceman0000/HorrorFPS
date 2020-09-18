@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyStatusL:
   - Name: 0
-    HP: 2
+    HP: 5
     Attack: 1
     Speed: 0
   - Name: 1

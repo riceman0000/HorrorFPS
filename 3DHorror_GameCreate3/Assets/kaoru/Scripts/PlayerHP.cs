@@ -12,8 +12,6 @@ public class PlayerHP : MonoBehaviour
     {
         playerHp -= Damage;
         slider.value = playerHp;
-        //Debug.Log("PlayerHP=" + playerHp);
-        
     }
 
 }

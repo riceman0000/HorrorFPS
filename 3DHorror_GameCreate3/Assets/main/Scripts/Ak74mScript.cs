@@ -41,13 +41,15 @@ namespace VRShooting
         bool reLoadFlag = true;
         [SerializeField]
         Text ammoText;
+        [SerializeField]
+        Transform camera;
         public int Ammo
         {
             set
             {
                 ammo = Mathf.Clamp(value, 0, maxAmmo);
                 currentAmmo = ammo;
-                ammoText.text = currentAmmo.ToString()+" / "+maxAmmo;
+                ammoText.text = currentAmmo.ToString() + " / " + maxAmmo;
             }
             get
             {
@@ -74,6 +76,7 @@ namespace VRShooting
             {
                 StartCoroutine(ShootTimer());
             }
+
         }
         void InitGun()
         {
@@ -146,10 +149,11 @@ namespace VRShooting
         {
             Debug.Log("Shoot()");
             anim.SetTrigger("Fire");
-            Ray ray = new Ray(transform.position, transform.forward);
+            //Vector3 p = new Vector3(player.position.x , player.position.y + )
+            Ray ray = new Ray(camera.position, camera.forward);
             RaycastHit hit;
 
-
+            Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 5);
             {
                 //レイを飛ばして、ヒットしたオブジェクトの情報を得る
                 if (Physics.Raycast(ray, out hit, shootRange))
