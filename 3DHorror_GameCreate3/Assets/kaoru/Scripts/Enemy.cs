@@ -14,7 +14,6 @@ namespace VRShooting
         Vector3 vec = new Vector3(0, -0.7f, 0);
         [SerializeField]
         float distValue = 1.7f;
-        [SerializeField]
         PlayerHP playerHP;
         Animator anim;
         EnemyStatus Zombie1;
@@ -24,15 +23,15 @@ namespace VRShooting
         void Start()
         {
             _SpawnManagerScript = GameObject.Find("SpawnManager").GetComponent<SpawnManagerScript>();
-            target = GameObject.Find("Player").transform;
+            var playerObj = GameObject.Find("Player");
+            target = playerObj.transform;
+            playerHP = playerObj.GetComponent<PlayerHP>();
             anim = this.GetComponent<Animator>();
             EnemyStatusList esl = ESManagement.Entity;
             Zombie1 = esl.EnemyStatusL[(int)EnemyTags.Tags.Enemy_Zombie1];
             currentHP = Zombie1.HP;
             attackPoint = Zombie1.Attack;
-            //Debug.Log(this.gameObject.name + ",currentHP=" + currentHP);
-            //Debug.Log(this.gameObject.name + ",AttackPoint=" + attackPoint);
-
+            
             attackSubject.ThrottleFirst(TimeSpan.FromSeconds(0.5f)).Subscribe((c) =>
             {
                 playerHP.A(Zombie1.Attack);

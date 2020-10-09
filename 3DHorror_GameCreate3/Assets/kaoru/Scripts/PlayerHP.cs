@@ -12,8 +12,11 @@ public class PlayerHP : MonoBehaviour
     {
         playerHp -= Damage;
         slider.value = playerHp;
-        //Debug.Log("PlayerHP=" + playerHp);
-        
+        SceneManaged.Instance.Test(playerHp);//test
     }
 
+    private void Start()
+    {
+        slider.value = playerHp;
+    }
 }

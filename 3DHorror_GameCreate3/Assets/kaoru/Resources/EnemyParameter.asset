@@ -15,7 +15,7 @@ MonoBehaviour:
   EnemyStatusL:
   - Name: 0
     HP: 2
-    Attack: 1
+    Attack: 10
     Speed: 0
   - Name: 1
     HP: 0
