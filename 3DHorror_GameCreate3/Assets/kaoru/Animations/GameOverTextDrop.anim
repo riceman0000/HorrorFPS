@@ -340,10 +340,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 3.5166667
-    functionName: AnimEvent()
+    functionName: AnimEvent
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 9f0e26672bf4b7d40b5fa46d2a6cf7f0,
-      type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

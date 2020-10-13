@@ -42,7 +42,7 @@ namespace VRShooting
         [SerializeField]
         Text ammoText;
         [SerializeField]
-        Transform camera;
+        Transform cameraPos;
         public int Ammo
         {
             set
@@ -149,8 +149,7 @@ namespace VRShooting
         {
             Debug.Log("Shoot()");
             anim.SetTrigger("Fire");
-            //Vector3 p = new Vector3(player.position.x , player.position.y + )
-            Ray ray = new Ray(camera.position, camera.forward);
+            Ray ray = new Ray(cameraPos.position, cameraPos.forward);
             RaycastHit hit;
 
             Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 5);
@@ -176,10 +175,10 @@ namespace VRShooting
                     if (hit.collider.tag == EnemyTags.Tags.Enemy_Zombie1.ToString())
                     {
                         Debug.Log("Zombie1当たり");
-                        var a = hit.collider.GetComponent<Enemy>();
-                        if (a != null && canShoot)
+                        var enemy = hit.collider.GetComponent<Enemy>();
+                        if (enemy != null && canShoot)
                         {
-                            a.HitDamage(-1);
+                            enemy.HitDamage(-1);
                         }
                         else { Debug.LogError("Hitしたはずのオブジェクト情報が取れていないよ"); }
 

@@ -284,8 +284,8 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurrentTargetSpeed: 8
   mouseLook:
-    XSensitivity: 2
-    YSensitivity: 2
+    XSensitivity: 20
+    YSensitivity: 20
     clampVerticalRotation: 1
     MinimumX: -45
     MaximumX: 90
@@ -784,10 +784,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 962017274266767850}
     m_Modifications:
-    - target: {fileID: 1458046410508832, guid: cad07940ee7c44f419bbedb32b966f78, type: 3}
-      propertyPath: m_Name
-      value: ak74m
-      objectReference: {fileID: 0}
     - target: {fileID: 4612571006016442, guid: cad07940ee7c44f419bbedb32b966f78, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.401
@@ -831,6 +827,10 @@ PrefabInstance:
     - target: {fileID: 4612571006016442, guid: cad07940ee7c44f419bbedb32b966f78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458046410508832, guid: cad07940ee7c44f419bbedb32b966f78, type: 3}
+      propertyPath: m_Name
+      value: ak74m
       objectReference: {fileID: 0}
     - target: {fileID: 1278230793, guid: cad07940ee7c44f419bbedb32b966f78, type: 3}
       propertyPath: ammoText

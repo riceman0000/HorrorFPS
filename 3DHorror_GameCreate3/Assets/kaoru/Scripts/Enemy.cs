@@ -66,7 +66,6 @@ namespace VRShooting
                 Destroy(this.gameObject);
                 Debug.Log("Destroy" + this.gameObject.name);
             }
-            //Debug.Log(this.gameObject.name + ",currentHP=" + currentHP);
         }
         public void HitDamage(int damage)
         {

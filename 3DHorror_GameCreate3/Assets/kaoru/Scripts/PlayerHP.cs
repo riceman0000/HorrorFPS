@@ -7,12 +7,15 @@ public class PlayerHP : MonoBehaviour
     //HP管理
     [SerializeField]int playerHp;
     [SerializeField] Slider slider;
-    
+
     public void A(int Damage)
     {
         playerHp -= Damage;
         slider.value = playerHp;
-        SceneManaged.Instance.Test(playerHp);//test
+        if (playerHp <= 0)
+        {
+            SceneManaged.Instance.Test(SceneManaged.SceneNameTags.GameOver.ToString());
+        }
     }
 
     private void Start()
