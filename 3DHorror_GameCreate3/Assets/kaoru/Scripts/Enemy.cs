@@ -9,17 +9,20 @@ namespace VRShooting
     {
         SpawnManagerScript _SpawnManagerScript;
         Transform target;
-        [SerializeField]
-        float speed = 0;
-        Vector3 vec = new Vector3(0, -0.7f, 0);
-        [SerializeField]
-        float distValue = 1.7f;
         PlayerHP playerHP;
         Animator anim;
         EnemyStatus Zombie1;
-        int currentHP;
-        int attackPoint;
+
         Subject<int> attackSubject = new Subject<int>();
+
+        [SerializeField]
+        float speed = 0;
+        [SerializeField]
+        float distValue = 1.7f;
+
+        Vector3 vec = new Vector3(0, -0.7f, 0);
+        int currentHP;
+
         void Start()
         {
             _SpawnManagerScript = GameObject.Find("SpawnManager").GetComponent<SpawnManagerScript>();
@@ -30,8 +33,7 @@ namespace VRShooting
             EnemyStatusList esl = ESManagement.Entity;
             Zombie1 = esl.EnemyStatusL[(int)EnemyTags.Tags.Enemy_Zombie1];
             currentHP = Zombie1.HP;
-            attackPoint = Zombie1.Attack;
-            
+
             attackSubject.ThrottleFirst(TimeSpan.FromSeconds(0.5f)).Subscribe((c) =>
             {
                 playerHP.A(Zombie1.Attack);
@@ -55,6 +57,7 @@ namespace VRShooting
                 anim.SetBool("isAttack", false);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation((target.position + vec) - transform.position), 0.3f);
                 transform.position += transform.forward * speed * 0.001f;
+                //マップのレベルデザイン後にナビメッシュで動かす
             }
         }
         void HP(int hp)

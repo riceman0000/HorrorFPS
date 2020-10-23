@@ -20,7 +20,6 @@ public class SceneManaged : MonoBehaviour
             }
             return instance;
         }
-
     }
     void Awake()
     {
