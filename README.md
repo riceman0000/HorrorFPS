@@ -1,4 +1,7 @@
 # HorrorFPS
-授業課題で製作途中の3Dホラーシューティングゲームです。
-Asset/kaoru/Scripts内のscriptが自作スクリプトです。
-Asset/main/Scenes/FPSplaysceneが自作メインシーンです。
+現在、個人製作途中の3Dホラーシューティングゲームです。
+
+Asset/kaoru/Scripts内が自作スクリプト達、
+Asset/main/Scenes内が自作メインシーン達です。
+
+3Dモデル等はassetを使用しています。
