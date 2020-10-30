@@ -56,7 +56,7 @@ namespace VRShooting
                 return ammo;
             }
         }
-        Subject<int> TimerSubject = new Subject<int>();
+        //Subject<int> TimerSubject = new Subject<int>();
         void Start()
         {
             Observable.Interval(TimeSpan.FromSeconds(1.0f)).Subscribe(_ =>

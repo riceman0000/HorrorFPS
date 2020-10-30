@@ -39,14 +39,23 @@ namespace VRShooting
         public void EnemyDeathCount()
         {
             enemyDeathCount++;
-            Debug.Log(enemyDeathCount + "→今のカウント");
+            Debug.Log(enemyDeathCount + "/" +
+                StageEntity.Stages[nowFazeIndex].Enemys.Count + "体の敵を倒した");
+
             if (StageEntity.Stages[nowFazeIndex].Enemys.Count == enemyDeathCount)
             {
                 enemyDeathCount = 0;
                 Observable.Timer(TimeSpan.FromSeconds(3.0f)).Subscribe(_ =>
                 {
                     nowFazeIndex++;
-                    SpawnEnemyOpportunity();
+                    if (StageEntity.Stages[nowFazeIndex] == null)
+                    {
+                        //クリアー画面に移行(リザルト)
+                    }
+                    else
+                    {
+                        SpawnEnemyOpportunity();
+                    }
                     Debug.Log("StartNextFaze!!!");
 
                 }).AddTo(this);
