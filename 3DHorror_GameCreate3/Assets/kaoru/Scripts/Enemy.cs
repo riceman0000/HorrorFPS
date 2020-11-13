@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System;
+using UnityEngine.AI;
+
 namespace VRShooting
 {
     public class Enemy : MonoBehaviour
@@ -12,7 +14,7 @@ namespace VRShooting
         PlayerHP playerHP;
         Animator anim;
         EnemyStatus Zombie1;
-
+        NavMeshAgent navMeshAgent;
         Subject<int> attackSubject = new Subject<int>();
 
         [SerializeField]
@@ -22,6 +24,13 @@ namespace VRShooting
 
         Vector3 vec = new Vector3(0, -0.7f, 0);
         int currentHP;
+        private bool isSafe = false;
+
+        public bool IsSafe
+        {
+            get => isSafe;
+            set => isSafe = value;
+        }
 
         void Start()
         {
@@ -33,7 +42,7 @@ namespace VRShooting
             EnemyStatusList esl = ESManagement.Entity;
             Zombie1 = esl.EnemyStatusL[(int)EnemyTags.Tags.Enemy_Zombie1];
             currentHP = Zombie1.HP;
-
+            navMeshAgent = GetComponent<NavMeshAgent>();
             attackSubject.ThrottleFirst(TimeSpan.FromSeconds(0.5f)).Subscribe((c) =>
             {
                 playerHP.A(Zombie1.Attack);
@@ -47,18 +56,23 @@ namespace VRShooting
         void AttackMotion()
         {
             var distance = Vector3.Distance(transform.position, target.position);
-            if (distance < distValue)
+            if (IsSafe)//PlayerがSafeHouseに入っていたらNavMesh探索も攻撃も通さない
             {
-                anim.SetBool("isAttack", true);
-                attackSubject.OnNext(2);
+                if (distance < distValue)
+                {
+                    anim.SetBool("isAttack", true);
+                    attackSubject.OnNext(2);
+                }
+                else
+                {
+                    anim.SetBool("isAttack", false);
+                    navMeshAgent.SetDestination(target.position);
+                    //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation((target.position + vec) - transform.position), 0.3f);
+                    navMeshAgent.speed = speed;
+                    //マップのレベルデザイン後にナビメッシュで動かす
+                }
             }
-            else
-            {
-                anim.SetBool("isAttack", false);
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation((target.position + vec) - transform.position), 0.3f);
-                transform.position += transform.forward * speed * 0.001f;
-                //マップのレベルデザイン後にナビメッシュで動かす
-            }
+            //IsSafe = true;
         }
         void HP(int hp)
         {

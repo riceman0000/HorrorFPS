@@ -9,6 +9,7 @@ namespace VRShooting
 {
     public class SpawnManagerScript : MonoBehaviour
     {
+        public List<Enemy> nowFazeEnemyScripts;
         public const string PATH = "StageFazeLists";
         private static StageFazeList _stageEntity;
         [SerializeField] GameObject spawnPoints;
@@ -99,8 +100,12 @@ namespace VRShooting
                 int s = (int)item.Tags;
                 var spawn = this.transform.GetChild(0).transform
                     .GetChild(child).gameObject.transform;
-                Instantiate(StageEntity.Prefabs[s].EnemyPrefab,
+                var enemy = Instantiate(StageEntity.Prefabs[s].EnemyPrefab,
                     spawn.position, spawn.rotation);
+
+                nowFazeEnemyScripts.Add(enemy.GetComponent<Enemy>());
+                //EnemyがInstantiateされたタイミングでされたObjectをListに保存。
+                //このListをSafeHouseFloorで取得して各々処理(Size分ループ)
                 child++;
             }
         }
