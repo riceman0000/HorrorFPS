@@ -9,7 +9,7 @@ namespace VRShooting
 {
     public class SpawnManagerScript : MonoBehaviour
     {
-        public List<Enemy> nowFazeEnemyScripts;
+        //public List<Enemy> nowFazeEnemyScripts;
         public const string PATH = "StageFazeLists";
         private static StageFazeList _stageEntity;
         [SerializeField] GameObject spawnPoints;
@@ -17,6 +17,12 @@ namespace VRShooting
         List<Transform> spawnPosTrans = new List<Transform>();
         public int enemyDeathCount = 0;
         public int nowFazeIndex = 0;
+        List<Enemy> enemies;
+        public List<Enemy> Enemies
+        {
+            get => enemies;
+            set => enemies = value;
+        }
         public static StageFazeList StageEntity
         {
             get
@@ -95,6 +101,7 @@ namespace VRShooting
             var a = StageEntity.Stages[nowFazeIndex];
             Shuffle(spawnPosTrans);//スポーンポイントをフェーズごとにシャッフルする。
             int child = 0;
+            List<Enemy> tempEnemy = new List<Enemy>();
             foreach (var item in a.Enemys)//シャッフルされたスポーンポイントに敵をスポーンさせる。
             {
                 int s = (int)item.Tags;
@@ -103,11 +110,13 @@ namespace VRShooting
                 var enemy = Instantiate(StageEntity.Prefabs[s].EnemyPrefab,
                     spawn.position, spawn.rotation);
 
-                nowFazeEnemyScripts.Add(enemy.GetComponent<Enemy>());
+                //nowFazeEnemyScripts.Add(enemy.GetComponent<Enemy>());
+                tempEnemy.Add(enemy.GetComponent<Enemy>());
                 //EnemyがInstantiateされたタイミングでされたObjectをListに保存。
                 //このListをSafeHouseFloorで取得して各々処理(Size分ループ)
                 child++;
             }
+            Enemies = tempEnemy;
         }
 
         /// <summary>

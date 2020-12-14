@@ -6,11 +6,8 @@ namespace VRShooting
     public class SafeHouseFloor : MonoBehaviour
     {
         [SerializeField] Enemy enemyScript;
-        private void Start()
-        {
-            
-        }
-        private void OnTriggerStay(Collider col)
+        
+        private void OnTriggerEnter(Collider col)
         {
             if (col.gameObject.tag == "Player")
             {

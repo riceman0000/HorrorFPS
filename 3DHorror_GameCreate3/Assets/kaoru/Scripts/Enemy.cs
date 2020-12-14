@@ -69,6 +69,8 @@ namespace VRShooting
                     navMeshAgent.SetDestination(target.position);
                     //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation((target.position + vec) - transform.position), 0.3f);
                     navMeshAgent.speed = speed;
+                    navMeshAgent.destination = target.position;
+                    
                     //マップのレベルデザイン後にナビメッシュで動かす
                 }
             }
