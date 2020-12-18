@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-namespace VRShooting
+﻿namespace VRShooting
 {
-    public class EnemyTags : MonoBehaviour
+    public class EnemyTags
     {
         public enum Tags
         {

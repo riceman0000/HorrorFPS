@@ -3689,7 +3689,7 @@ PrefabInstance:
     - target: {fileID: 8318277721926857046, guid: 5b6261a2dbd89be49bb2018827a8449f,
         type: 3}
       propertyPath: m_Name
-      value: Floor (2)
+      value: SafeHouse
       objectReference: {fileID: 0}
     - target: {fileID: 8318277721926857046, guid: 5b6261a2dbd89be49bb2018827a8449f,
         type: 3}
@@ -7971,8 +7971,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0945c197f15a23f4ea7da3395347bf22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyScript: {fileID: 3032721993716445859, guid: 3de180cd13a456d4c8887e049e6b2e4c,
-    type: 3}
 --- !u!1001 &2114475666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8064,11 +8062,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8528257924709880428, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8528257924709880429, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8124,55 +8117,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8528257924239594823, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
+    - target: {fileID: 8528257924709880430, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528257924239594823, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528257924666876626, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528257924666876626, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528257925216832460, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 18.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528257925216832460, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 24.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528257924447537465, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -18.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528257924447537465, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528257924180443604, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528257924180443604, guid: 76083b4f6cf8c9c438a11cc5e2f5465d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 14.56
-      objectReference: {fileID: 0}
+      propertyPath: _SafeHouseFloorScript
+      value: 
+      objectReference: {fileID: 2112634787}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76083b4f6cf8c9c438a11cc5e2f5465d, type: 3}

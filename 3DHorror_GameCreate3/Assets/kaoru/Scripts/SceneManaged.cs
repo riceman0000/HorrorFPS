@@ -35,17 +35,14 @@ public class SceneManaged : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    public void Test(string a)
-    {
-        SceneLoad(a);
-    }
     /// <summary>
     /// Scene移行を管理する唯一のメソッド。
     /// ScneNameTagsからscene名を簡単に取得できる。
     /// </summary>
     /// <param name="sceneTag">移行したいシーンの名前</param>
-    private static void SceneLoad(string sceneTag)
+    public void SceneLoad(int sceneTag)
     {
+
         SceneManager.LoadScene(sceneTag);
     }
     /// <summary>
@@ -54,7 +51,8 @@ public class SceneManaged : MonoBehaviour
     public enum SceneNameTags
     {
         FPSplayscene = 0,
-        Start = 1,
-        GameOver = 2
+        MainMenu = 1,
+        GameOver = 2,
+        GameClear = 3
     }
 }

@@ -24,9 +24,9 @@ namespace VRShooting
 
         Vector3 vec = new Vector3(0, -0.7f, 0);
         int currentHP;
-        private bool isSafe = false;
+        bool isSafe = false;
 
-        public bool IsSafe
+        public bool PlayerIsSafe
         {
             get => isSafe;
             set => isSafe = value;
@@ -39,13 +39,13 @@ namespace VRShooting
             target = playerObj.transform;
             playerHP = playerObj.GetComponent<PlayerHP>();
             anim = this.GetComponent<Animator>();
-            EnemyStatusList esl = ESManagement.Entity;
+            EnemyStatusList esl = EnemyStatasManagement.Entity;
             Zombie1 = esl.EnemyStatusL[(int)EnemyTags.Tags.Enemy_Zombie1];
             currentHP = Zombie1.HP;
             navMeshAgent = GetComponent<NavMeshAgent>();
             attackSubject.ThrottleFirst(TimeSpan.FromSeconds(0.5f)).Subscribe((c) =>
             {
-                playerHP.A(Zombie1.Attack);
+                playerHP.PlayerHPAdjustment(Zombie1.Attack);
             });
         }
 
@@ -56,8 +56,9 @@ namespace VRShooting
         void AttackMotion()
         {
             var distance = Vector3.Distance(transform.position, target.position);
-            if (IsSafe)//PlayerがSafeHouseに入っていたらNavMesh探索も攻撃も通さない
+            if (!PlayerIsSafe)//PlayerがSafeHouseに入っていたらNavMesh探索も攻撃も通さない
             {
+                GetComponent<NavMeshAgent>().isStopped = false;
                 if (distance < distValue)
                 {
                     anim.SetBool("isAttack", true);
@@ -69,24 +70,24 @@ namespace VRShooting
                     navMeshAgent.SetDestination(target.position);
                     //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation((target.position + vec) - transform.position), 0.3f);
                     navMeshAgent.speed = speed;
+
                     //マップのレベルデザイン後にナビメッシュで動かす
                 }
             }
-            //IsSafe = true;
-        }
-        void HP(int hp)
-        {
-            currentHP += hp;
-            if (currentHP <= 0)
+            else //PlayerがSafeHouseにいないのでNavMeshをOffにする
             {
-                _SpawnManagerScript.GetComponent<SpawnManagerScript>().EnemyDeathCount();
-                Destroy(this.gameObject);
-                Debug.Log("Destroy" + this.gameObject.name);
+                GetComponent<NavMeshAgent>().isStopped = true;
             }
         }
         public void HitDamage(int damage)
         {
-            HP(damage);
+            currentHP += damage;
+            if (currentHP <= 0)
+            {
+                _SpawnManagerScript.GetComponent<SpawnManagerScript>().OnEnemyDeath();
+                Destroy(this.gameObject);
+                Debug.Log("Destroy" + this.gameObject.name);
+            }
         }
     }
 }
