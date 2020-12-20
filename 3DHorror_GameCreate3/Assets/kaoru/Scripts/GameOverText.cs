@@ -19,7 +19,7 @@ namespace VRShooting
             {
                 if (Input.anyKey)
                 {
-                    SceneManaged.Instance.Test(SceneManaged.SceneNameTags.Start.ToString());
+                    SceneManaged.Instance.SceneLoad((int)SceneManaged.SceneNameTags.MainMenu);
                 }
             }
 

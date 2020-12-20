@@ -9,7 +9,6 @@ namespace VRShooting
 {
     public class SpawnManagerScript : MonoBehaviour
     {
-        //public List<Enemy> nowFazeEnemyScripts;
         public const string PATH = "StageFazeLists";
         private static StageFazeList _stageEntity;
         [SerializeField] GameObject spawnPoints;
@@ -17,12 +16,7 @@ namespace VRShooting
         List<Transform> spawnPosTrans = new List<Transform>();
         public int enemyDeathCount = 0;
         public int nowFazeIndex = 0;
-        List<Enemy> enemies;
-        public List<Enemy> Enemies
-        {
-            get => enemies;
-            set => enemies = value;
-        }
+        [SerializeField] SafeHouseFloor _SafeHouseFloorScript;
         public static StageFazeList StageEntity
         {
             get
@@ -43,7 +37,7 @@ namespace VRShooting
                 return _stageEntity;
             }
         }
-        public void EnemyDeathCount()
+        public void OnEnemyDeath()
         {
             enemyDeathCount++;
             Debug.Log(enemyDeathCount + "/" +
@@ -54,15 +48,21 @@ namespace VRShooting
                 enemyDeathCount = 0;
                 Observable.Timer(TimeSpan.FromSeconds(3.0f)).Subscribe(_ =>
                 {
-                    nowFazeIndex++;
-                    if (StageEntity.Stages[nowFazeIndex] == null)
+
+                    if (nowFazeIndex + 1 == StageEntity.Stages.Count)
                     {
-                        //クリアー画面に移行(リザルト)
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
+                        SceneManaged.Instance.SceneLoad((int)SceneManaged.SceneNameTags.GameClear);
                     }
                     else
                     {
+                        nowFazeIndex++;
                         SpawnEnemyOpportunity();
                     }
+
+                    
+
                     Debug.Log("StartNextFaze!!!");
 
                 }).AddTo(this);
@@ -71,12 +71,10 @@ namespace VRShooting
         }
         private void Start()
         {
-            GetSpawnPositions();
+            SetSpawnPositions();
             SpawnEnemyOpportunity();
-            enemyDeathCount = 0;
-            nowFazeIndex = 0;
         }
-        private void GetSpawnPositions()
+        private void SetSpawnPositions()
         {
             GameObject[] childSpawnPointsObj = GetComponentsInChildren<Transform>().
                    Select(t => t.gameObject).ToArray();
@@ -98,25 +96,25 @@ namespace VRShooting
         /// </summary>
         public void SpawnEnemyOpportunity()
         {
-            var a = StageEntity.Stages[nowFazeIndex];
+            var nowStageData = StageEntity.Stages[nowFazeIndex];
             Shuffle(spawnPosTrans);//スポーンポイントをフェーズごとにシャッフルする。
             int child = 0;
-            List<Enemy> tempEnemy = new List<Enemy>();
-            foreach (var item in a.Enemys)//シャッフルされたスポーンポイントに敵をスポーンさせる。
+            List<Enemy> nowFazeEnemyScripts = new List<Enemy>();
+
+            foreach (var item in nowStageData.Enemys)//シャッフルされたスポーンポイントに敵をスポーンさせる。
             {
-                int s = (int)item.Tags;
+                int enemyTagNumber = (int)item.Tags;
                 var spawn = this.transform.GetChild(0).transform
                     .GetChild(child).gameObject.transform;
-                var enemy = Instantiate(StageEntity.Prefabs[s].EnemyPrefab,
+                var enemy = Instantiate(StageEntity.Prefabs[enemyTagNumber].EnemyPrefab,
                     spawn.position, spawn.rotation);
 
-                //nowFazeEnemyScripts.Add(enemy.GetComponent<Enemy>());
-                tempEnemy.Add(enemy.GetComponent<Enemy>());
-                //EnemyがInstantiateされたタイミングでされたObjectをListに保存。
+                nowFazeEnemyScripts.Add(enemy.GetComponent<Enemy>());
+                //EnemyがInstantiateされたタイミングで生成されたObjectをListに保存。
                 //このListをSafeHouseFloorで取得して各々処理(Size分ループ)
                 child++;
             }
-            Enemies = tempEnemy;
+            _SafeHouseFloorScript.CatchEnemyData(nowFazeEnemyScripts);
         }
 
         /// <summary>

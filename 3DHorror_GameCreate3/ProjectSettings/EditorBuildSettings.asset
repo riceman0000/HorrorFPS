@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/main/Scenes/Start.unity
-    guid: 7d87c402c8dd0994a90e6d5025a4c508
-  - enabled: 1
-    path: Assets/main/Scenes/FPSplayscene.unity
+    path: Assets/kaoru/Scenes/FPSplayscene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/main/Scenes/GameOver.unity
+    path: Assets/kaoru/Scenes/MainMenu.unity
+    guid: 7d87c402c8dd0994a90e6d5025a4c508
+  - enabled: 1
+    path: Assets/kaoru/Scenes/GameOver.unity
     guid: 81b47c316174c5148959f52078a5e0ca
+  - enabled: 1
+    path: Assets/kaoru/Scenes/GameClear.unity
+    guid: 7a4cdd7591ea46448b17604eee19c700
   m_configObjects: {}

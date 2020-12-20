@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace VRShooting
 {
-    public class ESManagement : MonoBehaviour
+    public class EnemyStatasManagement : MonoBehaviour
     {
         public const string PATH = "EnemyParameter";
         private static EnemyStatusList _entity;

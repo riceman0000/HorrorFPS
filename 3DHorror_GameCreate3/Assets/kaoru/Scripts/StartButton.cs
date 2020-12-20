@@ -7,7 +7,7 @@ namespace VRShooting
     {
         public void ButtonClick()
         {
-            SceneManaged.Instance.Test(SceneManaged.SceneNameTags.FPSplayscene.ToString());
+            SceneManaged.Instance.SceneLoad((int)SceneManaged.SceneNameTags.FPSplayscene);
         }
     }
 }
