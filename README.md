@@ -5,6 +5,7 @@ Asset/kaoru/Scripts内が自作スクリプト達、
 Asset/main/Scenes内が自作メインシーン達です。
 
 3Dモデル等はassetを使用しています。
+最新buildデータを3DHorror_GameCreate3/Releases/3DHorror_GameCreate3.exeに共有しています。
 
 【開発環境】Unity2019.2.6f1/VisualStadio2019/C#
 
