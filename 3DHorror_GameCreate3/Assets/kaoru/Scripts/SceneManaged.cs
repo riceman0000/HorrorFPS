@@ -50,8 +50,9 @@ public class SceneManaged : MonoBehaviour
     /// </summary>
     public enum SceneNameTags
     {
-        FPSplayscene = 0,
-        MainMenu = 1,
+        
+        MainMenu = 0,
+        FPSplayscene = 1,
         GameOver = 2,
         GameClear = 3
     }
